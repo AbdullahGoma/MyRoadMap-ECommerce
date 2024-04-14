@@ -6,9 +6,11 @@ namespace BulkyWeb
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
 
+            // Add services to the container.
+            builder.Services.AddWebServices(builder);
+
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
