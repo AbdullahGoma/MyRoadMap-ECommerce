@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Category>
+
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="card shadow-sm mt-2">
+
+
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="card-title">
+                    <div class="symbol symbol-30px">
+                        <div class="text-primary">
+                            <i class="bi bi-diamond-fill"></i>
+                            Categories
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="col-auto">
+                <div class="card-toolbar">
+                    <a asp-controller="Categories" asp-action="Create" class="btn btn-md btn-info">
+                        <i class="bi bi-plus-square me-1"></i>
+                        Add
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        @if (!Model.Any())
+        {
+            <div class="alert alert-dismissible alert-warning">
+                <h4 class="alert-heading">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    Warning!
+                </h4>
+                <p class="mb-0">There is no categories found.</p>
+            </div>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Display Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>@category.Name</td>
+                            <td>@category.DisplayOrder</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
