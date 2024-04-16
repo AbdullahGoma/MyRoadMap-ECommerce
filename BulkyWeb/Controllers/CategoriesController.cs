@@ -1,21 +1,22 @@
-﻿using Bulky.Models.Entities;
+﻿using Bulky.DataAccess.Persistence.Repositories.IRepository;
+using Bulky.Models.Entities;
 
 namespace BulkyWeb.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ApplicationDbContext context, IMapper mapper)
+        public CategoriesController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var categoryList = _context.Categories.AsNoTracking().ToList().OrderBy(u => u.DisplayOrder);
+            var categoryList = _unitOfWork.Categories.GetAll().OrderBy(u => u.DisplayOrder);
             var viewModel = _mapper.Map<IEnumerable<CategoryViewModel>>(categoryList);
             return View(viewModel);
         }
@@ -36,8 +37,8 @@ namespace BulkyWeb.Controllers
 
             var category = _mapper.Map<Category>(model);
 
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            _unitOfWork.Categories.Add(category);
+            _unitOfWork.Complete();
 
             var viewModel = _mapper.Map<CategoryViewModel>(category);
 
@@ -48,16 +49,11 @@ namespace BulkyWeb.Controllers
         [AjaxOnly]
         public IActionResult Edit(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _unitOfWork.Categories.GetById(id);
             if (category is null)
                 return NotFound();
 
-            var viewModel = new CategoryFormViewModel
-            {
-                Id = id,
-                Name = category.Name,
-                DisplayOrder = category.DisplayOrder
-            };
+            var viewModel = _mapper.Map<CategoryFormViewModel>(category);
 
             return PartialView("_Form", viewModel);
         }
@@ -70,13 +66,12 @@ namespace BulkyWeb.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var category = _context.Categories.Find(model.Id);
+            var category = _unitOfWork.Categories.GetById(model.Id);
             if (category is null)
                 return NotFound();
 
-            category.Name = model.Name;
-            category.DisplayOrder = model.DisplayOrder;
-            _context.SaveChanges();
+            category = _mapper.Map(model, category);
+            _unitOfWork.Complete();
 
             var viewModel = _mapper.Map<CategoryViewModel>(category);
 
@@ -88,18 +83,18 @@ namespace BulkyWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _unitOfWork.Categories.GetById(id);
             if(category is null)
                 return NotFound();
 
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _unitOfWork.Categories.Remove(category);
+            _unitOfWork.Complete();
 
             return Ok();
         }
         public IActionResult AllowItem(CategoryFormViewModel model)
         {
-            var category = _context.Categories.SingleOrDefault(c => c.Name == model.Name);
+            var category = _unitOfWork.Categories.Find(c => c.Name == model.Name);
             var isAllowed = category is null || category.Id.Equals(model.Id);
             return Json(isAllowed);
         }

@@ -1,4 +1,5 @@
 ﻿using Bulky.DataAccess.Persistence;
+using Bulky.DataAccess.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,6 +17,8 @@ namespace Bulky.DataAccess
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                                  builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

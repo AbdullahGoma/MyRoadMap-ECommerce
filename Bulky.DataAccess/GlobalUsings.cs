@@ -4,3 +4,6 @@ global using Microsoft.EntityFrameworkCore.Migrations;
 global using Bulky.DataAccess.Persistence;
 global using Microsoft.EntityFrameworkCore.Infrastructure;
 global using Bulky.Models.Entities;
+global using Bulky.Utility.Consts;
+global using Bulky.DataAccess.Persistence.Repositories.IRepository;
+global using Bulky.Utility.Models;
