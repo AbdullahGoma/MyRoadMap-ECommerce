@@ -6,4 +6,8 @@ global using BulkyWeb.Consts;
 global using BulkyWeb.Core.ViewModels;
 global using BulkyWeb.Filters;
 global using Microsoft.AspNetCore.Mvc;
+global using AutoMapper;
+global using System.Reflection;
+
+
 

@@ -3,17 +3,19 @@
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
             var categoryList = _context.Categories.AsNoTracking().ToList().OrderBy(u => u.DisplayOrder);
-
-            return View(categoryList);
+            var viewModel = _mapper.Map<IEnumerable<CategoryViewModel>>(categoryList);
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -30,11 +32,14 @@
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var category = new Category { Name = model.Name, DisplayOrder = model.DisplayOrder };
+            var category = _mapper.Map<Category>(model);
 
             _context.Categories.Add(category);
             _context.SaveChanges();
-            return PartialView("_CategoryRow", category);
+
+            var viewModel = _mapper.Map<CategoryViewModel>(category);
+
+            return PartialView("_CategoryRow", viewModel);
         }
 
         [HttpGet]
@@ -71,7 +76,9 @@
             category.DisplayOrder = model.DisplayOrder;
             _context.SaveChanges();
 
-            return PartialView("_CategoryRow", category);
+            var viewModel = _mapper.Map<CategoryViewModel>(category);
+
+            return PartialView("_CategoryRow", viewModel);
         }
 
         [AjaxOnly]
