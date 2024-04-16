@@ -1,4 +1,6 @@
-﻿namespace BulkyWeb.Controllers
+﻿using Bulky.Models.Entities;
+
+namespace BulkyWeb.Controllers
 {
     public class CategoriesController : Controller
     {

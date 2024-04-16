@@ -1,4 +1,6 @@
-﻿namespace Bulky.DataAccess.Persistence
+﻿using Bulky.Models.Entities;
+
+namespace Bulky.DataAccess.Persistence
 {
     public class ApplicationDbContext : DbContext
     {

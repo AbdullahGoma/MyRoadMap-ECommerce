@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Bulky.Models.Entities;
 
 namespace BulkyWeb.Core.Mapping
 {

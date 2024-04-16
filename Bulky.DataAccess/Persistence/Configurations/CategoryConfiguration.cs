@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Bulky.Models.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Bulky.DataAccess.Persistence.Configurations
 {

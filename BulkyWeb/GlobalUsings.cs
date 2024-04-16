@@ -1,4 +1,4 @@
-﻿global using Bulky.Models;
+﻿global using Bulky.Models.Entities;
 global using Bulky.DataAccess;
 global using Bulky.DataAccess.Persistence;
 global using Microsoft.EntityFrameworkCore;
