@@ -88,7 +88,12 @@
 
             return Ok();
         }
-
+        public IActionResult AllowItem(CategoryFormViewModel model)
+        {
+            var category = _context.Categories.SingleOrDefault(c => c.Name == model.Name);
+            var isAllowed = category is null || category.Id.Equals(model.Id);
+            return Json(isAllowed);
+        }
 
     }
 }
