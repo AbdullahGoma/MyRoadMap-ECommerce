@@ -37,6 +37,12 @@ function showErrorMessage(message = 'Somthing went wrong!') {
     });
 }
 
+
+function onModalBegin() {
+    $('body :submit').attr('disabled', 'disabled');
+}
+
+
 function onModalSuccess(item) {
     showSuccessMessage();
     $('#Modal').modal('hide');
@@ -50,7 +56,9 @@ function onModalSuccess(item) {
 
 }
 
-
+function onModalComplete() {
+    $('body :submit').removeAttr('disabled');
+}
 
 $(document).ready(function () {
     $('body').delegate('.js-render-model', 'click', function () {
