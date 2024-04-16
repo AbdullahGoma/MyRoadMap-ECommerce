@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
-
-namespace BulkyWeb.Migrations
+﻿namespace Bulky.DataAccess.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDB : Migration

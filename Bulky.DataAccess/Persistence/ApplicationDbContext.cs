@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace BulkyWeb.Data
+﻿namespace Bulky.DataAccess.Persistence
 {
     public class ApplicationDbContext : DbContext
     {

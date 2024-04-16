@@ -1,4 +1,4 @@
-﻿namespace BulkyWeb.Consts
+﻿namespace Bulky.Utility.Consts
 {
     public static class Errors
     {
