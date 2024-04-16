@@ -1,0 +1,29 @@
+﻿@model Category
+<tr>
+    <td>@Model.Name</td>
+    <td>@Model.DisplayOrder</td>
+    <td>
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+            </button>
+            <ul class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3">
+                <li>
+                    <a href="javascript:;" class="dropdown-item js-render-model"
+                       data-title="Edit Category" data-status="edit"
+                       data-update="true"
+                       data-url="/Categories/Edit/@Model.Id">
+                        Edit
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="dropdown-item js-render-model"
+                       data-title="Delete Category" data-status="delete"
+                       data-url="/Categories/Delete/@Model.Id">
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </td>
+</tr>
