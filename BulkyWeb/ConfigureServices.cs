@@ -6,13 +6,14 @@ namespace BulkyWeb
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, WebApplicationBuilder builder)
         {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            
+            //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            //// Connect to database
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
             // Add services to the container.
             services.AddControllersWithViews();
 
-            // Connect to database
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            
 
             // Add AutoMapper
             services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
