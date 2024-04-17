@@ -11,7 +11,8 @@ namespace Bulky.DataAccess.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasIndex(e => new { e.Title, e.ISBN }).IsUnique();
+            builder.HasIndex(e => e.Title).IsUnique();
+            builder.HasIndex(e => e.ISBN).IsUnique();
 
             
             builder.Property(e => e.Title).HasMaxLength(500);

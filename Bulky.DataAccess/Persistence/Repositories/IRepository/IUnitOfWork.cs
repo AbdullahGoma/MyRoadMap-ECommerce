@@ -3,6 +3,7 @@
     public interface IUnitOfWork
     {
         ICategoryRepository Categories { get; }
+        public IProductRepository Products { get; }
         int Complete();
     }
 }
