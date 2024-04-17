@@ -1,8 +1,6 @@
-﻿using Bulky.DataAccess.Persistence.Repositories.IRepository;
-using Bulky.Models.Entities;
-
-namespace BulkyWeb.Controllers
+﻿namespace BulkyWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoriesController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -84,7 +82,7 @@ namespace BulkyWeb.Controllers
         public IActionResult Delete(int id)
         {
             var category = _unitOfWork.Categories.GetById(id);
-            if(category is null)
+            if (category is null)
                 return NotFound();
 
             _unitOfWork.Categories.Remove(category);

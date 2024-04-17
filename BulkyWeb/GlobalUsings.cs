@@ -9,6 +9,6 @@ global using BulkyWeb.Filters;
 global using Microsoft.AspNetCore.Mvc;
 global using AutoMapper;
 global using System.Reflection;
-
+global using Bulky.DataAccess.Persistence.Repositories.IRepository;
 
 
