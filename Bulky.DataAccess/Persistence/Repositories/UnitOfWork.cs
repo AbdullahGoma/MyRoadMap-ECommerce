@@ -15,6 +15,7 @@ namespace Bulky.DataAccess.Persistence.Repositories
             _context = context;
         }
         public ICategoryRepository Categories => new CategoryRepository(_context);
+        public IProductRepository Products => new ProductRepository(_context);
         public int Complete() => _context.SaveChanges();
     }
 }

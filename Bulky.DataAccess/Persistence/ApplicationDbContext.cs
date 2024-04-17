@@ -1,4 +1,4 @@
-﻿using Bulky.Models.Entities;
+﻿using Bulky.DataAccess.Persistence.Seeds;
 
 namespace Bulky.DataAccess.Persistence
 {
@@ -14,12 +14,11 @@ namespace Bulky.DataAccess.Persistence
             // Apply Configurations from all IEntityTypeConfiguration<T>
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // Seed Category Data 
-            builder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
-                new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
-                new Category { Id = 3, Name = "History", DisplayOrder = 3 }
-                );
+            // Seed Categories Data 
+            builder.Entity<Category>().HasData(CategoriesData.Data());
+
+            // Seed Products Data 
+            builder.Entity<Product>().HasData(ProductsData.Data()); 
 
             var cascadeFKs = builder.Model.GetEntityTypes()
                                           .SelectMany(t => t.GetForeignKeys())
@@ -32,6 +31,7 @@ namespace Bulky.DataAccess.Persistence
 
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
 
     }

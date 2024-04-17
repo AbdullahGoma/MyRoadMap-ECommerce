@@ -5,6 +5,7 @@
         public const string RequiredField = "Required Field!";
         public const string MaxLengthFor = "{PropertyName} Can not be more than {MaxLength} characters.";
         public const string MaxLength = "Length Can not be more than {1} characters.";
+        public const string MaxRange = "Max Range is between {1} and {2}.";
         public const string MaxMinLength = "The {0} must be at least {2} and at max {1} characters long.";
         public const string Duplicated = "Another record with the same {0} is already exists!";
         public const string DuplicatedBook = "Book with the same title is already exists with the same author!";

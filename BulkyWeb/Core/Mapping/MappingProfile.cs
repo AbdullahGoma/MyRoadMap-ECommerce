@@ -7,9 +7,13 @@ namespace BulkyWeb.Core.Mapping
     {
         public MappingProfile() 
         {
-            // Category
+            // Categories
             CreateMap<Category, CategoryViewModel>();
             CreateMap<CategoryFormViewModel, Category>().ReverseMap();
+
+            // Products
+            CreateMap<Product, ProductViewModel>();
+            CreateMap<ProductFormViewModel, Product>().ReverseMap();
         }
     }
 }
